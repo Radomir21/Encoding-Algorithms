@@ -27,6 +27,7 @@ def decode_line(line: str, line_num: int) -> bytes:
 
     if "=" in line:
         eq_index = line.index("=")
+        # усе після '=' має бути тільки '='
         if line.rstrip("=") != line[:eq_index]:
             print_padding_error(line_num, eq_index + 1)
 
@@ -37,6 +38,7 @@ def decode_line(line: str, line_num: int) -> bytes:
             print_invalid_char(line_num, i, ch)
 
     result = bytearray()
+
 
     for i in range(0, len(line), 4):
         block = line[i:i+4]
@@ -68,33 +70,43 @@ def decode_file(input_file, output_file):
     with open(input_file, "r", encoding="ascii") as f:
         lines = f.read().splitlines()
 
-    last_data_line = None
-
+    data_lines = []
     for idx, line in enumerate(lines, start=1):
 
-        if line.startswith("-"):
+        if line.lstrip().startswith("-"):
             continue
 
         if line.strip() == "":
             continue
 
-        if len(line) != 76 and idx != len(lines):
+        data_lines.append((idx, line))
+
+    if not data_lines:
+        print("Немає даних для декодування")
+        sys.exit(0)
+
+    last_real_line_index = data_lines[-1][0]
+
+    for idx, line in data_lines:
+
+        if "-" in line:
+            pos = line.index("-") + 1
+            print_invalid_char(idx, pos, "-")
+
+        if idx != last_real_line_index and len(line) != 76:
             print_length_error(idx, len(line))
 
-        if "=" in line and idx != len(lines):
+        if "=" in line and idx != last_real_line_index:
             pos = line.index("=") + 1
             print_padding_error(idx, pos)
 
         part = decode_line(line, idx)
         decoded.extend(part)
 
-        last_data_line = idx
-
-    if last_data_line is not None:
-        for extra in range(last_data_line + 1, len(lines)):
-            if not lines[extra].startswith("-") and lines[extra].strip():
-                print_after_end_warning()
-                break
+    for check_idx in range(last_real_line_index + 1, len(lines)):
+        line = lines[check_idx]
+        if not line.startswith("-") and line.strip():
+            print_after_end_warning()
 
     with open(output_file, "wb") as f:
         f.write(decoded)
@@ -102,6 +114,7 @@ def decode_file(input_file, output_file):
     print(f"Файл успішно декодовано -> {output_file}")
 
 
+
 if __name__ == "__main__":
 
-    decode_file("output.base64", "decode_file.txt")
+    decode_file("input.base64", "decoded_file.txt")
