@@ -69,7 +69,7 @@ def encode_file(input_file, output_file=None,comment=None):
 
 if __name__ == "__main__":
     
-    encode_file("file_1.txt", "output.base64", comment="- my comments")
+    encode_file("file_to_encode.txt", "output.base64", comment="-my comments")
 
 
    

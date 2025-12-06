@@ -19,7 +19,6 @@ def print_after_end_warning():
     print("Наявні дані після кінця повідомлення")
     sys.exit(0)
 
-# Декодування одного рядка (без коментаря)
 def decode_line(line: str, line_num: int) -> bytes:
 
     if len(line) % 4 != 0:
@@ -27,7 +26,6 @@ def decode_line(line: str, line_num: int) -> bytes:
 
     if "=" in line:
         eq_index = line.index("=")
-        # усе після '=' має бути тільки '='
         if line.rstrip("=") != line[:eq_index]:
             print_padding_error(line_num, eq_index + 1)
 
