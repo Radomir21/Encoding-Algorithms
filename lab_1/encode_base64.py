@@ -69,7 +69,12 @@ def encode_file(input_file, output_file=None,comment=None):
 
 if __name__ == "__main__":
     
-    encode_file("file_to_encode.txt", "output.base64", comment="-my comments")
+    input_file = input("Введи ім'я вхідного файла: ").strip()
+    output_file = input("Введи ім'я вихідного файла (або Enter): ").strip()
+    output_file = output_file if output_file else None
+
+    encode_file(input_file, output_file, comment="-my comments")
+
 
 
    
