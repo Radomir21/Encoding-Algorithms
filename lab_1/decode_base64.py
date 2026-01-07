@@ -115,4 +115,19 @@ def decode_file(input_file, output_file):
 
 if __name__ == "__main__":
 
-    decode_file("input.base64", "decoded_file.txt")
+    #decode_file("input.base64", "decoded_file.txt")
+    input_file = input("Введи ім'я закодованого файла: ").strip()
+
+    if input_file.endswith(".base64"):
+        suggested = 'output.base64'
+        print(f"Запропоноване ім'я вихідного файла: {suggested}")
+        answer = input("Використати це ім'я? (y/n): ").strip().lower()
+
+        if answer == "y":
+            output_file = suggested
+        else:
+            output_file = input("Введи ім'я вихідного файла: ").strip()
+    else:
+        output_file = input("Введи ім'я вихідного файла: ").strip()
+
+    decode_file(input_file, output_file)
