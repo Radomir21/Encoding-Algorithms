@@ -73,7 +73,7 @@ if __name__ == "__main__":
     output_file = input("Введи ім'я вихідного файла (або Enter): ").strip()
     output_file = output_file if output_file else None
 
-    encode_file(input_file, output_file, comment="-my comments")
+    encode_file(input_file, output_file, comment="-smthing comments")
 
 
 

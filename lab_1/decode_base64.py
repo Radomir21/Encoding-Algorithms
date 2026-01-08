@@ -4,7 +4,7 @@ import sys
 reverse_alphabet = {ch: i for i, ch in enumerate(encode_base64.alphabet )}
 
 def print_invalid_char(line, pos, ch):
-    print(f"Рядок {line}, символ {pos:02d}: Некоректний вхідний символ (`{ch}`)")
+    print(f"Рядок {line}, символ {pos:02d}: Некоректний вхідний символ ('{ch}')")
     sys.exit(0)
 
 def print_padding_error(line, pos):
