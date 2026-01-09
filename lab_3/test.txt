@@ -1,0 +1,269 @@
+use [tempdb]
+
+
+--https://www.microsoft.com/en-us/download/details.aspx?id=50003
+--ENU\x64\SQLEXPR_x64_ENU.exe-----------------sql database engine
+--ENU\x64\SQLManagementStudio_x64_ENU.exe-------------user interface software
+
+----------------------------------------------------------------------------------------------------------
+--ssms-------------user interactive
+
+----OLTP--online transactin processing-----------day to day transactins-------------it is not consider 
+--OLAP--- online analytical processing----------aggregate data has been maintained for the reporting purpose
+
+--per quater ---------------
+--per monthly
+--yearly data
+
+--tables --------------
+--views  --------------
+
+--(
+--employee
+--{
+--name : harshit
+--empid :1
+--}
+--{
+--name : ritu
+--empid : 2
+--}
+--}
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+--WHAT IS A DATABASE-------------------tables, stored procedures, functions, synonyms, views, triggers
+--SQL SERVER INSTALLATION-------------------
+--RELATIONAL DATABASE MANAGEMENT SYSTEM
+--TYPES OF DATABASES------OLTP, OLAP
+--TYPE OF DATA -----STRUCTURED, SEMI - STRUCTURED----------JSON   , UNSTRUCTURED--------files, audio,videos,images,pfd,docs
+--FACT TABLES------------------
+--DIMENTION TABLES-----------
+--CREATE A TABLE
+--INSERT SINGLE ROW
+--INSERT MULTIPLE ROWS
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+--DATABASE------A DATABASE IS AN ORGANIZED COLLECTION OF DATA SO THAT IT CAN BE EASILY ACCESSED AND
+              --MANAGED.
+
+--TYPES OF DATABASES
+--1.OLTP DB(ONLINE TRANSACTION PROCESSING)
+--2.OLAP DB(ONLINE ANALYTICAL PROCESSING)
+
+--OLTP --------FOR STORING DAY TO DAY TRANSACTIONS ----MINIMAL REDUNDANCY OF DATA---NORMALIZED STRUCTURE
+--FOR ANALYSIS PURPOSE OLTP IS NOT GOOD
+
+--OLAP ------  OLAP IS GOOD FOR ANALYSIS PURPOSE////REPORTING PURPOSE
+
+-----------------------------------------------------------------------------------------------------------
+--DATA MAY BE OF TWO TYPES
+--1. STRUCTURED DATA--------WE WILL HAVE A DATA IN FORM ROW AND COLUMNS------SQL DATABASES ARE GOOD FOR MANAGING
+--2. UNSTRUCTURED DATA ----VIDEOS, IMAGES, SOCIAL MEDIA POST, MOBILE ACTIVITY----NoSQL DATABASES ARE GOOD FOR MANAGING
+
+-----------------------------------------------------------------------------------------------------------
+--CREATING A TABLE
+
+--RULES:---------GOOD PRACTICE
+--ALWAYS RECOMMENDED TO START TABLE NAME WITH ALPHABET
+--LESS THAN 128 CHARS CAN BE USED FOR TABLE NAME
+--LESS THAN 128 CHARS CAN BE USED FOR COLUMN NAME
+--WE CAN HAVE 1024 COLUMN IN A TABLE
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+describe emp; 
+
+sp_help emp; 
+
+---------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE emp (
+  empno INT PRIMARY KEY,
+  ename VARCHAR(10),
+  job VARCHAR(9),
+  mgr INT NULL,
+  hiredate DATETIME,
+  sal NUMERIC(7,2),
+  comm NUMERIC(7,2) NULL,
+  dept INT
+);
+
+
+--truncate table emp
+
+select * from emp;
+
+
+--begin TRAN--------------
+
+INSERT INTO EMP VALUES
+  (7369, 'SMITH', 'CLERK', 7902, '17-DEC-1980', 800, NULL, 20);
+INSERT INTO EMP VALUES
+  (7499, 'ALLEN', 'SALESMAN', 7698, '20-FEB-1981', 1600, 300, 30);
+INSERT INTO EMP VALUES
+  (7521, 'WARD', 'SALESMAN', 7698, '22-FEB-1981', 1250, 500, 30);
+INSERT INTO EMP VALUES
+  (7566, 'JONES', 'MANAGER', 7839, '2-APR-1981', 2975, NULL, 20);
+INSERT INTO EMP VALUES
+  (7654, 'MARTIN', 'SALESMAN', 7698, '28-SEP-1981', 1250, 1400, 30);
+INSERT INTO EMP VALUES
+  (7698, 'BLAKE', 'MANAGER', 7839, '1-MAY-1981', 2850, NULL, 30);
+INSERT INTO EMP VALUES
+  (7782, 'CLARK', 'MANAGER', 7839, '9-JUN-1981', 2450, NULL, 10);
+INSERT INTO EMP VALUES
+  (7788, 'SCOTT', 'ANALYST', 7566, '09-DEC-1982', 3000, NULL, 20);
+INSERT INTO EMP VALUES
+  (7839, 'KING', 'PRESIDENT', NULL, '17-NOV-1981', 5000, NULL, 10);
+INSERT INTO EMP VALUES
+  (7844, 'TURNER', 'SALESMAN', 7698, '8-SEP-1981', 1500, 0, 30);
+INSERT INTO EMP VALUES
+  (7876, 'ADAMS', 'CLERK', 7788, '12-JAN-1983', 1100, NULL, 20);
+INSERT INTO EMP VALUES
+  (7900, 'JAMES', 'CLERK', 7698, '3-DEC-1981', 950, NULL, 30);
+INSERT INTO EMP VALUES
+  (7902, 'FORD', 'ANALYST', 7566, '3-DEC-1981', 3000, NULL, 20);
+INSERT INTO EMP VALUES
+  (7934, 'MILLER', 'CLERK', 7782, '23-JAN-1982', 1300, NULL, 10);
+INSERT INTO EMP VALUES
+  (7944, 'Harry', 'CLERK', 7752, '23-JAN-2021', 1400, NULL, 10);
+INSERT INTO EMP VALUES
+  (7945, 'Jarry', 'CLERK', 7654, '23-JAN-2024', 1600, NULL, 20);
+
+---------COMMIT--------------permanently stored the data into the table
+
+---ROLLBACK-----you can remove the data if it is wrongly inserted
+
+
+
+--end
+
+
+
+--select * from emp
+
+--autocommit
+
+/*
+SELECT * FROM emp
+WHERE DEPT =20
+
+
+drop table dept
+
+
+create schema temp
+
+
+create schema dbo
+
+drop schema temp
+
+drop table temp.dept2507
+
+
+
+create table temp.dept
+(
+id int
+)
+
+
+CREATE TABLE dept (
+  deptno INT NOT NULL,
+  dname VARCHAR(14),
+  loc VARCHAR(13)
+)
+
+begin
+INSERT INTO dept VALUES(10, 'ACCOUNTING', 'NEW YORK')
+INSERT INTO dept VALUES(20, 'RESEARCH', 'DALLAS')
+INSERT INTO dept VALUES(30, 'SALES', 'CHICAGO')
+INSERT INTO dept VALUES(40, 'OPERATIONS', 'BOSTON')
+end
+
+
+
+THE ABOVE COMMAND CREATE TABLE STRUCTURE/DEFINITION/METADATA WHICH INCLUDES , 
+COLUMNS, DATATYPE , SIZE.
+
+=> THE COMMAND TO SEE STRUCTURE OF OBJECT--
+
+SP_HELP <TABLE NAME> 
+
+SP_HELP emp
+
+select * from emp
+
+  empno INT PRIMARY KEY,
+  ename VARCHAR(10),
+  job VARCHAR(9),
+  mgr INT NULL,
+  hiredate DATETIME,
+  sal NUMERIC(7,2),
+  comm NUMERIC(7,2) NULL,
+  dept INT
+
+----------------------------------------------------------------------------------------------------------------
+INSERTING SINGLE ROW
+
+INSERT INTO emp VALUES(100, 'SACHIN','CLERK',7521,'2021-12-01',5000,NULL,10 );
+
+INSERT INTO emp VALUES(101, 'ramesh','CLERK',7522,'2021-12-01',5100,NULL,20 );
+
+INSERT INTO emp(empno,ename,job,mgr,hiredate,sal,dept) VALUES(105, 'ramesh','CLERK',7522,'2021-12-01',5100,20 );
+
+
+INSERTING MULTIPLE ROWS
+
+INSERT INTO emp VALUES(102, 'ramesh','CLERK',7522,'2021-12-01',5100,NULL,20 ),
+                      (103, 'ramesh','CLERK',7522,'2021-12-01',5100,NULL,20 ),
+                      (103, 'ramesh','CLERK',7522,'2021-12-01',5100,NULL,20 );
+
+------------------------------------------------------------------------------------------------------------------
+
+INSERTING NULLS
+
+=> NULLS MEANS MISSING VALUES
+=>  NULLS CAN ALSO BE ASSUMED AS BLANK OR EMPTY VALUE
+=> NULLS CAN BE INSERTED INTO THE TABLE IN TWO WAYS
+
+--METHOD1
+--INSERT INTO emp VALUES(104, 'AJAY', NULL,NULL,30, GETDATE());
+
+--METHOD2
+--INSERT INTO emp(empid, ename, age,hiredate)  VALUES(105, 'RAMA', 28, '2019-10-05');
+--=> REMAINING TWO FIELDS  FILLED WITH NULLS
+
+
+--SELECT * INTO EMP1
+--FROM emp
+
+
+SELECT * INTO EMP2
+FROM emp
+WHERE 1=2----------------ALWAYS FALSE
+
+SELECT * INTO EMP3
+FROM emp
+WHERE 1=1----------------ALWAYS TRUE
+
+
+SELECT * INTO EMP3
+FROM emp
+
+
+
+SELECT * FROM EMP2
+
+
+
+(21 row(s) affected)
+
+SELECT * FROM EMP
+SELECT * FROM EMP1
+*/
+
