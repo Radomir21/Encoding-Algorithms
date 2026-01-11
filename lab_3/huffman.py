@@ -1,11 +1,10 @@
-# huffman_simple.py
 import heapq
 import struct
 from bit_stream import BitStream
 
 
-# Узел дерева: (freq, symbol, left, right)
-# symbol: 0..255 для листа, None для внутреннего узла
+# Вузол дерева: (freq, symbol, left, right)
+# symbol: 0..255 для листа, None для внутрішнього вузла
 def make_node(freq, symbol=None, left=None, right=None):
     return [freq, symbol, left, right]
 
@@ -25,7 +24,7 @@ def build_huffman_tree(freq):
     heap = []
     uid = 0
 
-    # кладём листья
+    # листя
     for sym in range(256):
         f = freq[sym]
         if f > 0:
@@ -37,11 +36,9 @@ def build_huffman_tree(freq):
     if len(heap) == 0:
         return None
 
-    # спец-случай: один символ
     if len(heap) == 1:
         return heap[0][2]
 
-    # объединяем
     while len(heap) > 1:
         f1, _, n1 = heapq.heappop(heap)
         f2, _, n2 = heapq.heappop(heap)
@@ -57,7 +54,6 @@ def build_code_table(root):
     if root is None:
         return codes
 
-    # один символ -> "0"
     if is_leaf(root):
         codes[root[1]] = "0"
         return codes
@@ -66,7 +62,6 @@ def build_code_table(root):
         if is_leaf(node):
             codes[node[1]] = path
             return
-        # left = 0, right = 1
         if node[2] is not None:
             dfs(node[2], path + "0")
         if node[3] is not None:
@@ -77,7 +72,6 @@ def build_code_table(root):
 
 
 def write_freq_table(fout, freq):
-    # 256 * uint32 = 1024 байта
     for f in freq:
         fout.write(struct.pack("<I", f))
 
@@ -101,10 +95,10 @@ def encode_file(input_path, output_path=None):
     codes = build_code_table(root)
 
     with open(output_path, "wb") as fout:
-        # 1) таблица частот
+        # 1) таблиця частот
         write_freq_table(fout, freq)
 
-        # 2) битовый поток
+        # 2) бітовый поток
         bs = BitStream(fout, "w")
         try:
             for b in data:
@@ -129,7 +123,6 @@ def decode_file(input_path, output_path=None):
         total = sum(freq)
         root = build_huffman_tree(freq)
 
-        # пустой файл
         if total == 0:
             with open(output_path, "wb") as fout:
                 fout.write(b"")
@@ -140,7 +133,6 @@ def decode_file(input_path, output_path=None):
 
         bs = BitStream(fin, "r")
         with open(output_path, "wb") as fout:
-            # если один символ в файле
             if is_leaf(root):
                 fout.write(bytes([root[1]]) * total)
                 return output_path

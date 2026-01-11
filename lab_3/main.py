@@ -1,4 +1,3 @@
-# main.py
 import sys
 from huffman import encode_file, decode_file
 

@@ -205,3 +205,19 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+# ===== Lab 3: Huffman tests & results =====
+
+# папки с тестовыми файлами
+bmp tests/
+csv tests/
+exe tests/
+pdf tests/
+txt tests/
+
+
+# ===== Ignore local helper scripts =====
+batch_test.py
+calc_K.py
+
