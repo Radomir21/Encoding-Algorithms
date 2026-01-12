@@ -220,4 +220,5 @@ txt tests/
 # ===== Ignore local helper scripts =====
 batch_test.py
 calc_K.py
-
+batch_test2.py
+calc_K2.py
