@@ -6,7 +6,7 @@ from bit_stream import BitStream
 from BWT import bwt_encode, bwt_decode
 from MTF import mtf_encode, mtf_decode
 
-MAGIC = b"RADOMYR21"  
+MAGIC = b"RAD2"  
 
 FLAG_BWT = 1
 FLAG_MTF = 2
