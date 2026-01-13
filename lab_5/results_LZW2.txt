@@ -1,0 +1,31 @@
+=== Compression coefficients (K = compressed / original) ===
+
+Folder: bmp tests2
+  LZW            : n=10  avg=0.5120  min=0.0231  max=1.2182
+  LZW+BWT        : no data
+  LZW+MTF        : no data
+  LZW+BWT+MTF    : no data
+
+Folder: csv tests2
+  LZW            : n=10  avg=0.4324  min=0.1311  max=0.7861
+  LZW+BWT        : n=10  avg=0.4275  min=0.1514  max=0.8029
+  LZW+MTF        : n=10  avg=0.6623  min=0.3927  max=1.1078
+  LZW+BWT+MTF    : n=10  avg=0.4173  min=0.1441  max=0.7673
+
+Folder: exe tests2
+  LZW            : n=10  avg=0.6381  min=0.2554  max=0.9022
+  LZW+BWT        : n=10  avg=0.6398  min=0.2462  max=0.9007
+  LZW+MTF        : n=10  avg=0.7656  min=0.2849  max=1.0547
+  LZW+BWT+MTF    : n=10  avg=0.6235  min=0.2291  max=0.8811
+
+Folder: pdf tests2
+  LZW            : n=10  avg=1.3300  min=1.2533  max=1.4080
+  LZW+BWT        : n=10  avg=1.3598  min=1.2952  max=1.4175
+  LZW+MTF        : n=10  avg=1.3745  min=1.3259  max=1.4159
+  LZW+BWT+MTF    : n=10  avg=1.3647  min=1.3029  max=1.4181
+
+Folder: txt tests2
+  LZW            : n=10  avg=0.4570  min=0.4051  max=0.4969
+  LZW+BWT        : n=10  avg=0.5514  min=0.4982  max=0.5786
+  LZW+MTF        : n=10  avg=0.7871  min=0.7440  max=0.8468
+  LZW+BWT+MTF    : n=10  avg=0.5488  min=0.4916  max=0.5745
