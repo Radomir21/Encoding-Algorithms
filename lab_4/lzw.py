@@ -51,7 +51,7 @@ def read_header(in_f):
 
 
 def lzw_compress(input_path, output_path=None, max_bits=16, overflow_mode="reset"):
-    max_dict_size = 2^max_bits
+    max_dict_size = 1 << max_bits
 
     if output_path is None:
         output_path = input_path + ".lzw"
