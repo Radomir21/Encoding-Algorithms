@@ -3,13 +3,9 @@ def bwt_encode_block(block: bytes):
     if n == 0:
         return b"", 0
 
-    rotations = []
+    rotations = list(range(n))
 
-    for i in rotations:
-        rot = block[i:] + block[:i]
-        rotations.append(rot,i)
-
-    rotations.sort()
+    rotations.sort(key=lambda i: block[i:] + block[:i])
 
     primary_index = rotations.index(0)
 

@@ -1,0 +1,31 @@
+=== Compression coefficients (K = compressed / original) ===
+
+Folder: bmp tests
+  HUFF           : n=10  avg=0.6824  min=0.2315  max=1.1043
+  HUFF+BWT       : n=10  avg=0.6834  min=0.2325  max=1.1056
+  HUFF+MTF       : n=10  avg=0.5628  min=0.2038  max=1.1027
+  HUFF+BWT+MTF   : n=10  avg=0.4710  min=0.1454  max=1.0144
+
+Folder: csv tests
+  HUFF           : n=10  avg=0.5971  min=0.4349  max=0.7725
+  HUFF+BWT       : n=10  avg=0.5981  min=0.4359  max=0.7740
+  HUFF+MTF       : n=10  avg=0.5995  min=0.4505  max=0.8130
+  HUFF+BWT+MTF   : n=10  avg=0.3629  min=0.1931  max=0.6157
+
+Folder: exe tests
+  HUFF           : n=10  avg=0.6842  min=0.3876  max=0.8389
+  HUFF+BWT       : n=10  avg=0.6852  min=0.3886  max=0.8399
+  HUFF+MTF       : n=10  avg=0.6482  min=0.3034  max=0.8269
+  HUFF+BWT+MTF   : n=10  avg=0.4930  min=0.2431  max=0.6553
+
+Folder: pdf tests
+  HUFF           : n=10  avg=0.9955  min=0.9897  max=1.0006
+  HUFF+BWT       : n=10  avg=0.9965  min=0.9907  max=1.0015
+  HUFF+MTF       : n=10  avg=0.9905  min=0.9830  max=0.9963
+  HUFF+BWT+MTF   : n=10  avg=0.9674  min=0.9392  max=0.9884
+
+Folder: txt tests
+  HUFF           : n=10  avg=0.5918  min=0.5692  max=0.6274
+  HUFF+BWT       : n=10  avg=0.5928  min=0.5702  max=0.6284
+  HUFF+MTF       : n=10  avg=0.6390  min=0.6150  max=0.6703
+  HUFF+BWT+MTF   : n=10  avg=0.4602  min=0.4136  max=0.4777
