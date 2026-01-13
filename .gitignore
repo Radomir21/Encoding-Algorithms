@@ -216,6 +216,12 @@ exe tests/
 pdf tests/
 txt tests/
 
+bmp tests2/
+csv tests2/
+exe tests2/
+pdf tests2/
+txt tests2/
+
 
 # ===== Ignore local helper scripts =====
 batch_test.py
@@ -224,3 +230,5 @@ batch_test2.py
 calc_K2.py
 batch_test3.py
 calc_K3.py
+batch_test4.py
+calc_K4.py
