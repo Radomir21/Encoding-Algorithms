@@ -1,6 +1,6 @@
 from bit_stream import BitStream
 
-MAGIC = b"RADOMYR21"
+MAGIC = b"RAD2"
 
 
 def write_uint8(f, x):
